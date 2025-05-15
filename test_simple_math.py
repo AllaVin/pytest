@@ -1,5 +1,9 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 import pytest
-from Lesson_1.simple_math import SimpleMath
+from simple_math import SimpleMath
 
 @pytest.fixture
 def simple_math():
