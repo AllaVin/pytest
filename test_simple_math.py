@@ -1,7 +1,5 @@
 import pytest
-from .simple_math import SimpleMath
-
-import sys
+from Lesson_1.simple_math import SimpleMath
 
 @pytest.fixture
 def simple_math():
