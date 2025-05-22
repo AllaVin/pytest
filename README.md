@@ -2,14 +2,14 @@
 
 ### 📋 Table of Contents #
 
-- [🎯 Home work 1](#-home-work-1)
-- [🎯 Home work 2](#-home-work-2)
-- [🎯 Home work 3](#-home-work-3)
-- [🎯 Home work 4](#-home-work-4)
-- [🎯 Home work 5](#-home-work-5)
+- [Home work 1](#-home-work-1)
+- [Home work 2](#-home-work-2)
+- [Home work 3](#-home-work-3)
+- [Home work 4](#-home-work-4)
+- [Home work 5](#-home-work-5)
 
 
-### 🎯 Home work 1 
+### Home work 1 
 
 <details>
 
@@ -40,9 +40,9 @@
 - Метод square(2) должен возвращать 4.
 - Метод cube(-3) должен возвращать -27.
 
-</details>
+</details>️ 
 
-### 🎯 Home work 2
+### Home work 2
 
 <details>
 
