@@ -8,7 +8,11 @@
 - [Home work 4](#-home-work-4)
 - [Home work 5](#-home-work-5)
 
+<<<<<<< Updated upstream
 ### Home work 1 
+=======
+### Home work 1
+>>>>>>> Stashed changes
 
 <details>
 
