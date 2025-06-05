@@ -1,18 +1,6 @@
-# pytest
+# The Home works list
 
-### 📋 Table of Contents #
-
-- [Home work 1](#-home-work-1)
-- [Home work 2](#-home-work-2)
-- [Home work 3](#-home-work-3)
-- [Home work 4](#-home-work-4)
-- [Home work 5](#-home-work-5)
-
-<<<<<<< Updated upstream
-### Home work 1 
-=======
 ### Home work 1
->>>>>>> Stashed changes
 
 <details>
 
@@ -83,13 +71,12 @@ Do a screenshot of that section.
 <details>
 
 **Task**
-Задание 1: Проверка изменения текста кнопки
+### Задание 1: Проверка изменения текста кнопки
 Тестируемый сайт:
 
 http://uitestingplayground.com/textinput
 
 Шаги теста:
-
 Перейдите на сайт Text Input.
 
 Введите в поле ввода текст "ITCH".
@@ -98,7 +85,8 @@ http://uitestingplayground.com/textinput
 
 Проверьте, что текст кнопки изменился на "ITCH".
 
-Задание 2: Проверка загрузки изображений
+### Задание 2: Проверка загрузки изображений
+
 Тестируемый сайт:
 
 https://bonigarcia.dev/selenium-webdriver-java/loading-images.html
@@ -112,6 +100,5 @@ https://bonigarcia.dev/selenium-webdriver-java/loading-images.html
 Получите значение атрибута alt у третьего изображения.
 
 Убедитесь, что значение атрибута alt равно "award".
-
 
 </details>
