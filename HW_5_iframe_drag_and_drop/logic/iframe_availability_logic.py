@@ -1,14 +1,3 @@
-# Задание 1: Проверка наличия текста в iframe
-# Открыть страницу
-# Перейти по ссылке: https://bonigarcia.dev/selenium-webdriver-java/iframes.html.
-# Проверить наличие текста
-# Найти фрейм (iframe), в котором содержится искомый текст.
-# Переключиться в этот iframe.
-# Найти элемент, содержащий текст "semper posuere integer et senectus justo curabitur.".
-# Убедиться, что текст отображается на странице.
-
-
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
