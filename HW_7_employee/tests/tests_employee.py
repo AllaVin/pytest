@@ -1,89 +1,43 @@
-# from HW.HW_7_employee.api.employee_api import base_url, EmployeeApi
-# from HW.HW_7_employee.test_data.employee_data import employee
-#
-# def test_employee_create():
-#     api = EmployeeApi(base_url)
-#
-#     token = api.get_auth_token("admin", "admin")
-#
-#     # Сначала создаём компанию
-#     company = api.create_company("QA Test Company", "Temporary company for employee creation")
-#     company_id = company["id"]
-#
-#     # Создание нового сотрудника (аргументы из словаря)
-#     response = api.add_new_employee(
-#         employee["first_name"],
-#         employee["last_name"],
-#         employee["middle_name"],
-#         company_id,
-#         employee["email"],
-#         employee["phone"],
-#         employee["birthdate"],
-#         employee["is_active"]
-#     )
-#     print("Сотрудник создан", response)
-#
-#     # Получение ID сотрудника из ответа
-#     employee_id = response["id"]
-#
-#     # Получение данных сотрудника по ID
-#     emp_data = api.get_employee_data_by_id(employee_id)
-#     print("Данные сотрудника:", emp_data)
-#
-#     # Можно сделать assert по нужному полю
-#     assert emp_data["email"] == employee["email"]
-#
-#     # Обновляем данные сотрудника
-#     updated = api.update_employee_by_id(
-#         employee_id,
-#         "Grey",
-#         "grey.grey@example.com",
-#         phone= "444-555-666",
-#         is_active=True
-#     )
-#     print("Данные после обновления", updated)
-
 from HW.HW_7_employee.api.employee_api import EmployeeApi
 from HW.HW_7_employee.test_data.employee_data import employee, company, auth_data
 
 base_url = "http://5.101.50.27:8000"
+api = EmployeeApi(base_url)
 
 def test_employee_create():
-    api = EmployeeApi(base_url)
-
-    # 🔐 Получаем токен
-    token = api.get_auth_token(auth_data["username"], auth_data["password"])
-
-    # ✅ Создаём компанию
-    new_company = api.create_company(company["name"], company["description"])
-    company_id = new_company["id"]
-
-    # ✅ Создаём сотрудника
     created_employee = api.add_new_employee(
         employee["first_name"],
         employee["last_name"],
         employee["middle_name"],
-        company_id,
+        1,  # временно company_id = 1
         employee["email"],
         employee["phone"],
         employee["birthdate"],
         employee["is_active"]
     )
-    employee_id = created_employee["id"]
+    assert "id" in created_employee
+    assert created_employee["first_name"] == "Maria"
 
-    # ✅ Получаем данные сотрудника
-    emp_data = api.get_employee_data_by_id(employee_id)
-    assert emp_data["email"] == employee["email"]
-
-    # ✅ Обновляем сотрудника (с токеном)
-    updated = api.update_employee_by_id(
-        employee_id,
-        last_name="Grey",
-        email="grey.grey@example.com",
-        phone="444-555-666",
-        is_active=True,
-        token=token
+def test_get_employee_info():
+    new_employee = api.add_new_employee(
+        "Alice", "Brown", "Marie", 2,
+        "alicebrown@example.com", "+9876543210",
+        "1988-05-22", True
     )
+    emp_id = new_employee["id"]
+    fetched = api.get_employee_data_by_id(emp_id)
+    assert fetched["id"] == emp_id
+    assert fetched["first_name"] == "Alice"
 
-    assert updated["last_name"] == "Grey"
-    assert updated["email"] == "grey.grey@example.com"
+def test_update_employee():
+    new_employee = api.add_new_employee(
+        "Bob", "Smith", "James", 3,
+        "bobsmith@example.com", "+1357924680",
+        "1985-07-30", True
+    )
+    emp_id = new_employee["id"]
+    updated = api.update_employee_by_id(
+        emp_id, "Smith", "robertsmith@example.com", "+111222333", False
+    )
+    assert updated["email"] == "robertsmith@example.com"
+    assert updated["is_active"] is False

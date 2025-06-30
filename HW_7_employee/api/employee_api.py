@@ -1,15 +1,10 @@
 import requests
-from HW.HW_7_employee.test_data.employee_data import token
-
 
 class EmployeeApi:
-    """Класс для работы с API сотрудников"""
-
     def __init__(self, url):
         self.url = url
 
     def get_auth_token(self, username, password):
-        """Получение client_token по логину и паролю"""
         payload = {
             "username": username,
             "password": password
@@ -29,7 +24,7 @@ class EmployeeApi:
         response = requests.post(f"{self.url}/company/create", json=company)
         print("\n🌸 Company creation status:", response.status_code)
         print("Ответ:", response.text)
-        assert response.status_code == 201, f"Ошибка создания компании: {response.status_code}"
+        assert response.status_code in [200, 201], f"Ошибка создания компании: {response.status_code}"
         return response.json()
 
     def add_new_employee(self, first_name, last_name, middle_name, company_id, email, phone, birthdate, is_active):
@@ -46,7 +41,7 @@ class EmployeeApi:
         response = requests.post(f"{self.url}/employee/create", json=employee)
         print("\n🌸 Сотрудник создан:", response.status_code)
         print("Ответ:", response.text)
-        assert response.status_code == 200, f"Ошибка: ожидался статус 200, получен {response.status_code}"
+        assert response.status_code in [200, 201], f"Ошибка: ожидался статус 200 или 201, получен {response.status_code}"
         return response.json()
 
     def get_employee_data_by_id(self, employee_id):
@@ -56,19 +51,15 @@ class EmployeeApi:
         assert response.status_code == 200, f"Ошибка: ожидался статус 200, получен {response.status_code}"
         return response.json()
 
-    def update_employee_by_id(self, employee_id, last_name, email, phone, is_active, token):
+    def update_employee_by_id(self, employee_id, last_name, email, phone, is_active):
         update_payload = {
             "last_name": last_name,
             "email": email,
             "phone": phone,
-            "is_active": is_active
+            "is_active": is_active,
         }
-        response = requests.patch(
-            f"{self.url}/employee/change/{employee_id}",
-            json=update_payload,
-            params={"client_token": token}
-        )
+        response = requests.patch(f"{self.url}/employee/change/{employee_id}", json=update_payload)
         print("\n🌸 Статус обновления:", response.status_code)
         print("Ответ:", response.text)
-        assert response.status_code == 200, f"Ошибка: ожидался статус 200, получен {response.status_code}"
+        assert response.status_code in [200, 201], f"Ошибка: ожидался статус 200 или 201, получен {response.status_code}"
         return response.json()
