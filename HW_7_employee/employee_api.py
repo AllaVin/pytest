@@ -1,5 +1,8 @@
 # Для загрузки пароля из .env:
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 import requests
 
 class EmployeeApi:
@@ -8,7 +11,8 @@ class EmployeeApi:
         """Инициализация с базовым URL"""
         self.url = url
 
-    def create_employee(self, first_name, last_name, middle_name, company_id, email, phone, birthdate, is_active=True):
+    def create_employee(self, first_name, last_name, middle_name, company_id,
+                        email, phone, birthdate, is_active=True):
         """Создание нового сотрудника"""
         employee_data = {
             "first_name": first_name,
@@ -33,7 +37,7 @@ class EmployeeApi:
 
     def get_token(self):
         """Получить токен авторизации (добавьте корректные данные)"""
-        creds = {"username": "harrypotter", "password": "expelliarmus"}
+        creds = {"username": os.getenv("LOGIN"), "password": os.getenv("PASSWORD")}
         resp = requests.post(self.url + '/auth/login', json=creds)
         assert resp.status_code == 200, f"Ошибка: ожидался статус 200, получен {resp.status_code}"
         return resp.json()["user_token"]
