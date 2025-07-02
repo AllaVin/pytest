@@ -37,6 +37,7 @@ class EmployeeApi:
 
     def get_token(self):
         """Получить токен авторизации (добавьте корректные данные)"""
+        # creds = {"username": "harrypotter", "password": "expelliarmus"}  # Если не использовать переменные из .env
         creds = {"username": os.getenv("LOGIN"), "password": os.getenv("PASSWORD")}
         resp = requests.post(self.url + '/auth/login', json=creds)
         assert resp.status_code == 200, f"Ошибка: ожидался статус 200, получен {resp.status_code}"
