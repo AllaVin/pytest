@@ -11,11 +11,13 @@
 
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 @pytest.fixture
 def driver():
-    chrome_options = Options()
+    chrome_options = ChromeOptions()
+    ## chrome_options.add_argument('--incognito') # Запускает браузер в режиме инкогнито (как при ручном открытии окна "новое приватное окно").
+    ## chrome_options.add_argument('--headless') # Запускает браузер без графического интерфейса, то есть "в фоне", без открытия окна браузера на экране.
     chrome_options.add_argument("--disable-infobars")
     chrome_options.add_argument("--disable-notifications")
     chrome_options.add_argument("--disable-popup-blocking")
